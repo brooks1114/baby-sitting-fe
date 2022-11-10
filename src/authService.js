@@ -5,6 +5,7 @@ class APIService {
     constructor(url = process.env.REACT_APP_API_URL, client = axios) {
         this.url = url;
         this.client = client;
+        console.log(this.url);
     }
 
     login(credentials) {
