@@ -1,6 +1,6 @@
 import Header from "../../components/header/Header";
 import Slideshow from "../../components/slideshow/Slideshow";
-import GridCardsSitters from "../../components/sitters/GridCardsSitters";
+// import GridCardsSitters from "../../components/sitters/GridCardsSitters";
 import SittersSearchResults from "../../components/sitters/SittersSearchResults";
 import { isAuthenticated } from "../../utils/authHelper";
 
