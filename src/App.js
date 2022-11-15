@@ -6,6 +6,7 @@ import Login from "./pages/login/Login";
 import NotFound from "./pages/notFound/NotFound";
 import Register from "./pages/register/Register";
 import UpdateUser from "./pages/updateUser/UpdateUser";
+import Sitters from "./pages/sitters/Sitters";
 
 function App() {
   return (
@@ -30,6 +31,11 @@ function App() {
           exact
           path="/updateuser/:email"
           component={UpdateUser}
+        />
+        <Route
+          exact
+          path="/sitters"
+          component={Sitters}
         />
         <Route
           exact
