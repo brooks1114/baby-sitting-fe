@@ -1,5 +1,5 @@
 import Card from 'react-bootstrap/Card';
-import './SingleSitterCard.css'
+import './Card.css'
 import Row from 'react-bootstrap/Row';
 import { Link } from 'react-router-dom';
 
