@@ -7,6 +7,7 @@ import NotFound from "./pages/notFound/NotFound";
 import Register from "./pages/register/Register";
 import UpdateUser from "./pages/updateUser/UpdateUser";
 import Sitters from "./pages/sitters/Sitters";
+import Appointments from "./pages/appointments/Appointments";
 
 function App() {
   return (
@@ -36,6 +37,11 @@ function App() {
           exact
           path="/sitters"
           component={Sitters}
+        />
+        <Route
+          exact
+          path="/appointments"
+          component={Appointments}
         />
         <Route
           exact

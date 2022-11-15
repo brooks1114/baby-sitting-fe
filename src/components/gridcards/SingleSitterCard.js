@@ -20,8 +20,6 @@ export default function SingleSitterCard(props) {
     return (
         <div className="card">
             <div className="SitterCard">
-
-
                 <Card.Body>
                     {/* Display an image of the Sitter */}
                     <div className="circle-image text-center">
