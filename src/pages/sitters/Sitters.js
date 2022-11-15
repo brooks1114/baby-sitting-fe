@@ -1,10 +1,9 @@
 import Header from "../../components/header/Header";
-import Slideshow from "../../components/slideshow/Slideshow";
-// import GridCardsSitters from "../../components/sitters/GridCardsSitters";
 import SittersSearchResults from "../../components/sitters/SittersSearchResults";
+import Slideshow from "../../components/slideshow/Slideshow";
 import { isAuthenticated } from "../../utils/authHelper";
 
-function Home(props) {
+function Sitters(props) {
   return (
     <div className="Home">
       <Header isAuthenticated={isAuthenticated()} />
@@ -14,4 +13,4 @@ function Home(props) {
   );
 }
 
-export default Home;
+export default Sitters;

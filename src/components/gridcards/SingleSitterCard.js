@@ -17,7 +17,6 @@ export default function SingleSitterCard(props) {
 
     let customMailTo = "mailto:" + customEmail + "?subject=" + customSubject + "&body=" + customBody
 
-    console.log(props.sitter.rating)
     return (
         <div className="card">
             <div className="SitterCard">
@@ -40,7 +39,7 @@ export default function SingleSitterCard(props) {
                     <Card.Text>
 
                         <div className="price">${props.sitter.hourlyRate}/hr</div>
-                        <div className="price">*Up to {props.sitter.maxKidsWillingToWatch} Children</div>
+                        <div className="maxKids">*Up to {props.sitter.maxKidsWillingToWatch} Children</div>
                         <div className="email">
                             <a href={customMailTo}>For Questions Email: {props.sitter.firstName}</a>
                         </div>
