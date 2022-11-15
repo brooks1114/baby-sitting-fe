@@ -1,6 +1,7 @@
 import Card from 'react-bootstrap/Card';
 import './SingleSitterCard.css'
 import Row from 'react-bootstrap/Row';
+import { Link } from 'react-router-dom';
 
 export default function SingleSitterCard(props) {
     let starRating = []
@@ -44,7 +45,7 @@ export default function SingleSitterCard(props) {
 
                     </Card.Text>
                 </Card.Body >
-                <a href="http://localhost:5000/api/sitters" className="btn btn-block"><i className="fas fa-link"></i> Book Now</a>
+                <Link to={`/createappointment/${props.sitter.email}`} className="btn btn-block"><i className="fas fa-link"></i> Book Now</Link>
             </div >
         </div >
     )

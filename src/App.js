@@ -8,6 +8,7 @@ import Register from "./pages/register/Register";
 import UpdateUser from "./pages/updateUser/UpdateUser";
 import Sitters from "./pages/sitters/Sitters";
 import Appointments from "./pages/appointments/Appointments";
+import CreateAppointment from "./pages/createAppointment/CreateAppointment";
 
 function App() {
   return (
@@ -47,6 +48,11 @@ function App() {
           exact
           path="/protected"
           component={Protected}
+        />
+        <Route
+          exact
+          path="/createappointment/:sitteremail"
+          component={CreateAppointment}
         />
         <Route
           exact
