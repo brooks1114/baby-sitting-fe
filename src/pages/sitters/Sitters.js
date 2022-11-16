@@ -7,7 +7,6 @@ function Sitters(props) {
   return (
     <div className="Home">
       <Header isAuthenticated={isAuthenticated()} />
-      <Slideshow />
       <SittersSearchResults />
     </div>
   );

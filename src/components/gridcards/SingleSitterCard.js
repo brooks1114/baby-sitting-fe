@@ -45,7 +45,9 @@ export default function SingleSitterCard(props) {
 
                     </Card.Text>
                 </Card.Body >
-                <Link to={`/createappointment/${props.sitter.email}`} className="btn btn-block"><i className="fas fa-link"></i> Book Now</Link>
+                <div className="buttons">
+                    <Link to={`/createappointment/${props.sitter.email}`} className="btn btn-block"><i className="fas fa-link"></i> Book Now</Link>
+                </div>
             </div >
         </div >
     )
