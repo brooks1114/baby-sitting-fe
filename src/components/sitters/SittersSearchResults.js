@@ -10,7 +10,6 @@ function GridCardsSittersHook(props) {
     const [sitters, setSitters] = useState([])
     const [query, setQuery] = useState("")
     const handleCallback = useCallback((filters) => {
-        console.log("Calling callback")
         let queryBuilder = "?"
         Object.keys(filters).map((key) => {
             if (filters[key]) {
@@ -20,21 +19,10 @@ function GridCardsSittersHook(props) {
         setQuery(queryBuilder)
     }, []);
 
-    // const handleCallback = (filters) => {
-    //     // this.setState({data: childData})
-    //     console.log("filters", filters)
-    //     console.log("MEGAN IN CALLBACK")
-    //     setQuery("")
-    //     console.log(query)
-    //     return filters;
-    // };
-
     const getSitters = () => {
         fetch(`${process.env.REACT_APP_API_URL}/api/sitters${query}`)
             .then((response) => response.json())
-
             .then((sitterData) => {
-                console.log("getsitters successful")
                 setSitters(sitterData)
             })
             .catch((error) => {
@@ -43,15 +31,15 @@ function GridCardsSittersHook(props) {
     }
 
     useEffect(() => {
-        console.log("useEffect")
         getSitters()
     }, [query])
 
     return (
         <div className="GridCardsSitters container mb-3">
+            <div className="App-page-title">Your Sitter Search Results</div>
             <Filters filters={handleCallback} />
-            <h1>Your Sitter Search Results</h1>
             <Row xs={1} lg={3} className="g-4">
+
                 {sitters.map((sitter, idx) => (
                     <Col key={idx}>
                         <SingleSitterCard

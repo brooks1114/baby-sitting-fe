@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import { Button, Dropdown, DropdownButton, FormControl, InputGroup } from "react-bootstrap";
+import { Dropdown, DropdownButton, FormControl, InputGroup } from "react-bootstrap";
 import CloseIcon from "../closeIcon/CloseIcon";
 import "./Filters.css";
 
 class Filters extends Component {
 
-    filters() {
-        console.log("calling filters")
-        this.props.filters(this.state);
-    }
+    nbs = ["Somerville", "Brighton", "Boston"]
 
     state = {
         firstName: "",
@@ -17,12 +14,12 @@ class Filters extends Component {
         neighborhood: [],
         rating: "",
         hourlyRate: "",
-        maxKids: ""
+        maxKidsWillingToWatch: ""
     }
 
     onClearFilter(stateToChange) {
-        this.setState({ [stateToChange]: "" })
-        this.filters(this.state)
+        console.log("clear")
+        this.setState({ [stateToChange]: "" }, () => { this.props.filters(this.state) })
     }
 
     render() {
@@ -34,16 +31,14 @@ class Filters extends Component {
                             <FormControl
                                 onKeyDown={(event) => {
                                     if (event.key === "Enter") {
-                                        this.setState({ firstName: event.target.value })
-                                        this.filters(this.state)
+                                        this.setState({ firstName: event.target.value }, () => { this.props.filters(this.state) })
                                     }
                                 }}
                                 onBlur={(event) => {
-                                    this.setState({ firstName: event.target.value })
-                                    this.filters(this.state)
+                                    this.setState({ firstName: event.target.value }, () => { this.props.filters(this.state) })
                                 }}
                             />
-                            <Button> X </Button>
+                            {/* <Button> X </Button> */}
                         </InputGroup>
                     </DropdownButton>
                     <DropdownButton id="dropdown-last-name" title="Last Name">
@@ -51,13 +46,11 @@ class Filters extends Component {
                             <FormControl
                                 onKeyDown={(event) => {
                                     if (event.key === "Enter") {
-                                        this.setState({ lastName: event.target.value })
-                                        this.filters(this.state)
+                                        this.setState({ lastName: event.target.value }, () => { this.props.filters(this.state) })
                                     }
                                 }}
                                 onBlur={(event) => {
-                                    this.setState({ lastName: event.target.value })
-                                    this.filters(this.state)
+                                    this.setState({ lastName: event.target.value }, () => { this.props.filters(this.state) })
                                 }
                                 }
                             />
@@ -94,8 +87,7 @@ class Filters extends Component {
                         </div>}
                     </DropdownButton>
                     <DropdownButton id="dropdown-rating" title="Rating" onSelect={(eventKey, event) => {
-                        this.setState({ rating: eventKey })
-                        this.filters(this.state)
+                        this.setState({ rating: eventKey }, () => { this.props.filters(this.state) })
                     }}>
                         <Dropdown.Item eventKey="1">1+</Dropdown.Item>
                         <Dropdown.Item eventKey="2">2+</Dropdown.Item>
@@ -108,13 +100,11 @@ class Filters extends Component {
                             <FormControl type="number"
                                 onKeyDown={(event) => {
                                     if (event.key === "Enter") {
-                                        this.setState({ hourlyRate: event.target.value })
-                                        this.filters(this.state)
+                                        this.setState({ hourlyRate: event.target.value }, () => { this.props.filters(this.state) })
                                     }
                                 }}
                                 onBlur={(event) => {
-                                    this.setState({ hourlyRate: event.target.value })
-                                    this.filters(this.state)
+                                    this.setState({ hourlyRate: event.target.value }, () => { this.props.filters(this.state) })
                                 }}
                             />
                         </InputGroup>
@@ -124,13 +114,11 @@ class Filters extends Component {
                             <FormControl type="number"
                                 onKeyDown={(event) => {
                                     if (event.key === "Enter") {
-                                        this.setState({ maxKids: event.target.value })
-                                        this.filters(this.state)
+                                        this.setState({ maxKidsWillingToWatch: event.target.value }, () => { this.props.filters(this.state) })
                                     }
                                 }}
                                 onBlur={(event) => {
-                                    this.setState({ maxKids: event.target.value })
-                                    this.filters(this.state)
+                                    this.setState({ maxKidsWillingToWatch: event.target.value }, () => { this.props.filters(this.state) })
                                 }}
                             />
                         </InputGroup>
@@ -141,9 +129,9 @@ class Filters extends Component {
                     {this.state.lastName !== "" ? <div className="filter-indicator"> Last Name: {this.state.lastName} <CloseIcon handleClickClose={() => this.onClearFilter("lastName")} /> </div> : <></>}
                     {this.state.availability !== "" ? <div className="filter-indicator"> Availabilty: {this.state.availability} <CloseIcon />  </div> : <></>}
                     {this.state.neighborhood.length > 0 ? <div className="filter-indicator"> Neighborhood: {this.state.neighborhood} <CloseIcon />  </div> : <></>}
-                    {this.state.rating !== "" ? <div className="filter-indicator"> Rating: {this.state.rating} <CloseIcon />  </div> : <></>}
+                    {this.state.rating !== "" ? <div className="filter-indicator"> Rating: {this.state.rating} <CloseIcon handleClickClose={() => this.onClearFilter("rating")} /> </div> : <></>}
                     {this.state.hourlyRate !== "" ? <div className="filter-indicator"> Hourly Rate: {this.state.hourlyRate} <CloseIcon handleClickClose={() => this.onClearFilter("hourlyRate")} /> </div> : <></>}
-                    {this.state.maxKids !== "" ? <div className="filter-indicator"> Max Kids: {this.state.maxKids} <CloseIcon handleClickClose={() => this.onClearFilter("maxKids")} /> </div> : <></>}
+                    {this.state.maxKidsWillingToWatch !== "" ? <div className="filter-indicator"> Max Kids: {this.state.maxKidsWillingToWatch} <CloseIcon handleClickClose={() => this.onClearFilter("maxKidsWillingToWatch")} /> </div> : <></>}
                 </div>
             </div>
         );

@@ -1,16 +1,21 @@
 
 .filter-container {
     display: flex;
-    gap: 10px;
     margin: 5px 0px;
+    flex-wrap: wrap;
+  }
+  .filter-container .btn {
+    margin: 2px;
+    margin-bottom:10px;
   }
   
   .active-filters-container {
     min-height: 30px;
     display: flex;
     gap: 10px;
-  }
-  
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }  
   
   .filter-indicator {
     border-radius: 5px;
