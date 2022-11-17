@@ -1,17 +1,19 @@
-import { Alert, Button, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Button, Card } from 'react-bootstrap';
 import './Card.css';
+import { generateAuthHeader, getUserEmail } from '../../utils/authHelper'
 
 export default function AppointmentCard(props) {
 
     const dateFull = new Date(props.appointment.appointmentDate)
     const date = dateFull.toDateString();
-    const time = dateFull.getHours() + ":" + dateFull.getMinutes()
+    // const time = dateFull.getHours() + ":" + dateFull.getMinutes()
+    const time = dateFull.toLocaleTimeString();
 
     function handleCancelAppointment() {
         fetch(`${process.env.REACT_APP_API_URL}/api/appointments/${props.appointment._id}`, {
             method: "PUT", headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                ...generateAuthHeader()
             }, body: JSON.stringify({ appointmentStatus: "Cancelled" })
         })
             .then((response) => response.json())
@@ -26,6 +28,16 @@ export default function AppointmentCard(props) {
             });
 
     }
+    // Set up the custome e-mail from Family to Sitter 
+    // "%0d%0a" is an outlook new line requirement/syntax not jsx
+    let customEmail = props.appointment.sitterInfo.email
+    let customSubject = "Questions regarding your services in Sitting"
+    let customBody = `Dear ${props.appointment.sitterInfo.firstName},%0d%0a%0d%0a
+        We would like to ask you the following questions regarding our appointment with you on ${date}: %0d%0a%0d%0a
+        Thank you for your time,`
+
+    let customMailTo = "mailto:" + customEmail + "?subject=" + customSubject + "&body=" + customBody
+
 
     return (
         <div className="card">
@@ -40,13 +52,18 @@ export default function AppointmentCard(props) {
             </div>
             <Card.Body>
                 <Card.Title>
-                    <div className="name mb-1 fw-500 text-center">{props.appointment.sitterInfo.firstName}</div>
+                    <div className="name mb-1 fw-500 text-center">{props.appointment.sitterInfo.firstName} {props.appointment.sitterInfo.lastName}</div>
                 </Card.Title>
                 <Card.Text>
-                    <div className="date">Date:{date}</div>
-                    <div className="time">Time:{time}</div>
-                    <div className="duration">Duration:{props.appointment.appointmentDuration}</div>
-                    <div> Contact Sitter: {props.appointment.sitterEmail}</div>
+                    <div className="card-text-line">
+                        <Card.Title>Date: </Card.Title> {date} </div>
+                    <div className="card-text-line">
+                        <Card.Title>Time:</Card.Title> {time}</div>
+                    <div className="card-text-line">
+                        <Card.Title>Duration:</Card.Title> {props.appointment.appointmentDuration} hrs</div>
+                    <div className="card-text-line">
+                        <Card.Title>Contact Sitter: </Card.Title> <a className="email" href={customMailTo}> {props.appointment.sitterEmail}</a>
+                    </div>
                 </Card.Text>
             </Card.Body >
             <div className="buttons">

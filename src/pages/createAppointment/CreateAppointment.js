@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import Alert from 'react-bootstrap/Alert';
 import { generateAuthHeader, getUserEmail } from '../../utils/authHelper'
-
 import Header from "../../components/header/Header";
-
 import AppointmentForm from "../../components/appointmentForm/AppointmentForm";
+import mustBeAuthenticated from "../../redux/hoc/mustBeAuthenticated";
 
 class CreateAppointment extends Component {
 
@@ -64,7 +63,7 @@ class CreateAppointment extends Component {
         return (
             <div className="CreateAppointment">
 
-                <Header />
+                <Header isAuthenticated={this.props.isAuthenticated} />
 
                 <div className="container">
                     {this.state.errorMessage && <Alert variant="danger">{this.state.errorMessage}</Alert>}
@@ -82,4 +81,4 @@ class CreateAppointment extends Component {
     }
 }
 
-export default CreateAppointment
+export default mustBeAuthenticated(CreateAppointment)
