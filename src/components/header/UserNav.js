@@ -32,6 +32,7 @@ function UserNav(props) {
       </Navbar.Text>
       <Nav.Link as={Link} to="/login" href="/login">Sign in</Nav.Link>
       <Nav.Link as={Link} to="/register" href="/register">Register</Nav.Link>
+      <Nav.Link as={Link} to="/deleteaccount" href="/deleteaccount">Delete Account</Nav.Link>
     </>
   )
   if (props.isAuthenticated) {
@@ -40,6 +41,8 @@ function UserNav(props) {
         <Navbar.Text className="font-weight-bold mx-3">
           Hello, {props.auth.email}
         </Navbar.Text>
+        <Nav.Link as={Link} to={`/appointments`} href={`/appointments`}> Your Appointments</Nav.Link>
+        <Nav.Link as={Link} to={`/sitters`} href={`/sitters`}> Find Sitters</Nav.Link>
         <Nav.Link as={Link} to={`/updateuser/${props.auth.email}`} href={`/updateuser/${props.auth.email}`}> Edit Profile</Nav.Link>
         <Nav.Link onClick={handleSignOut}>Sign Out</Nav.Link>
       </>

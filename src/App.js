@@ -9,6 +9,7 @@ import UpdateUser from "./pages/updateUser/UpdateUser";
 import Sitters from "./pages/sitters/Sitters";
 import Appointments from "./pages/appointments/Appointments";
 import CreateAppointment from "./pages/createAppointment/CreateAppointment";
+import DeleteAccount from "./pages/deleteAccount/DeleteAccount";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route
           exact
           path="/"
-          component={Home}
+          component={Appointments}
         />
         <Route
           exact
@@ -53,6 +54,11 @@ function App() {
           exact
           path="/createappointment/:sitteremail"
           component={CreateAppointment}
+        />
+         <Route
+          exact
+          path="/deleteaccount"
+          component={DeleteAccount}
         />
         <Route
           exact

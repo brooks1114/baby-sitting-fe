@@ -1,6 +1,6 @@
 import Header from "../../components/header/Header";
 import SittersSearchResults from "../../components/sitters/SittersSearchResults";
-import Slideshow from "../../components/slideshow/Slideshow";
+import mustBeAuthenticated from "../../redux/hoc/mustBeAuthenticated";
 import { isAuthenticated } from "../../utils/authHelper";
 
 function Sitters(props) {
@@ -12,4 +12,4 @@ function Sitters(props) {
   );
 }
 
-export default Sitters;
+export default mustBeAuthenticated(Sitters);

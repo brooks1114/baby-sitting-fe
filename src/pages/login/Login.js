@@ -52,7 +52,8 @@ class Login extends Component {
         const flashMessage = params.get('message');
         if (this.state.success) {
             const redirect = params.get('redirect');
-            return <Redirect to={(redirect) ? redirect : "/protected"} />
+            console.log({ redirect })
+            return <Redirect to={redirect ?? "/appointments"} />
         }
         return (
             <div className="LoginForm">
@@ -91,3 +92,4 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(withRouter(Login));
+
