@@ -9,7 +9,7 @@ class Filters extends Component {
         console.log("calling filters")
         this.props.filters(this.state);
     }
-
+    nbs = ["Somerville", "Brighton", "Boston"]
     state = {
         firstName: "",
         lastName: "",

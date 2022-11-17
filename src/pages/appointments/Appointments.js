@@ -4,12 +4,13 @@ import Row from 'react-bootstrap/Row';
 import AppointmentCard from "../../components/gridcards/AppointmentCard";
 import Header from "../../components/header/Header";
 import { isAuthenticated } from "../../utils/authHelper";
+import { generateAuthHeader, getUserEmail } from '../../utils/authHelper'
 
 function Appointments(props) {
   const [appointments, setAppointments] = useState([])
 
   const getAppointments = () => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/appointments}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/appointments/${getUserEmail()}}`)
       .then((response) => response.json())
 
       .then((appointmentData) => {
@@ -31,7 +32,7 @@ function Appointments(props) {
       <Row xs={1} lg={3} className="g-4">
         {appointments.map((appointment, idx) => (
           <Col key={idx}>
-            <AppointmentCard appointment={appointment} />
+            <AppointmentCard appointment={appointment} getAppointments={getAppointments} />
           </Col>
         ))}
       </Row>

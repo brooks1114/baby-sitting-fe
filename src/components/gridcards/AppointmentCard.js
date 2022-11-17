@@ -1,4 +1,5 @@
-import {Button, Card} from 'react-bootstrap';
+import { Alert, Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import './Card.css';
 
 export default function AppointmentCard(props) {
@@ -7,13 +8,34 @@ export default function AppointmentCard(props) {
     const date = dateFull.toDateString();
     const time = dateFull.getHours() + ":" + dateFull.getMinutes()
 
+    function handleCancelAppointment() {
+        fetch(`${process.env.REACT_APP_API_URL}/api/appointments/${props.appointment._id}`, {
+            method: "PUT", headers: {
+                'Content-Type': 'application/json'
+            }, body: JSON.stringify({ appointmentStatus: "Cancelled" })
+        })
+            .then((response) => response.json())
+
+            .then((updatedApointment) => {
+
+                alert("Your Appointment has been Cancelled")
+                props.getAppointments()
+            })
+            .catch((error) => {
+                console.log(error.message)
+            });
+
+    }
+
     return (
         <div className="card">
             <div className="status">
                 {props.appointment.appointmentStatus === "Accepted" ? <div className="accepted">Accepted</div>
                     : props.appointment.appointmentStatus === "Declined" ? <div className="declined">Declined</div>
                         : props.appointment.appointmentStatus === "Pending" ? <div className="pending"> Pending</div>
-                            : <> </>
+                            : props.appointment.appointmentStatus === "Cancelled" ? <div className="cancelled"> Cancelled</div>
+                                : <div>
+                                </div>
                 }
             </div>
             <Card.Body>
@@ -28,8 +50,9 @@ export default function AppointmentCard(props) {
                 </Card.Text>
             </Card.Body >
             <div className="buttons">
-                <Button> Cancel</Button>
+                {props.appointment.appointmentStatus === "Cancelled" ? <div>
+                </div> : <Button onClick={() => { handleCancelAppointment() }} className="btn btn-block" > Cancel </Button>}
             </div>
-        </div>
+        </div >
     )
 }
