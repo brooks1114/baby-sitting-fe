@@ -12,10 +12,15 @@ function GridCardsSittersHook(props) {
     const handleCallback = useCallback((filters) => {
         let queryBuilder = "?"
         Object.keys(filters).map((key) => {
-            if (filters[key]) {
+            if (filters[key] && (!Array.isArray(filters[key]))) {
                 queryBuilder += `${key}=${filters[key]}&`
             }
+            else if (Array.isArray(filters[key])) {
+                queryBuilder += `${key}=${JSON.stringify(filters[key])}&`
+
+            }
         })
+        queryBuilder.trim("&") // need to trim & or ? if they are stray on the end
         setQuery(queryBuilder)
     }, []);
 
