@@ -1,15 +1,14 @@
-import { Switch, Route } from "react-router-dom";
-
-import Home from "./pages/home/Home";
-import Protected from "./pages/protected/Protected";
-import Login from "./pages/login/Login";
-import NotFound from "./pages/notFound/NotFound";
-import Register from "./pages/register/Register";
-import UpdateUser from "./pages/updateUser/UpdateUser";
-import Sitters from "./pages/sitters/Sitters";
+import { Route, Switch } from "react-router-dom";
 import Appointments from "./pages/appointments/Appointments";
 import CreateAppointment from "./pages/createAppointment/CreateAppointment";
 import DeleteAccount from "./pages/deleteAccount/DeleteAccount";
+import Login from "./pages/login/Login";
+import NotFound from "./pages/notFound/NotFound";
+import Protected from "./pages/protected/Protected";
+import Register from "./pages/register/Register";
+import Sitters from "./pages/sitters/Sitters";
+import UpdateUser from "./pages/updateUser/UpdateUser";
+
 
 function App() {
   return (

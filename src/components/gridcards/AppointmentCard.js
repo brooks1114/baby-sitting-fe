@@ -1,6 +1,6 @@
 import { Button, Card } from 'react-bootstrap';
+import { generateAuthHeader } from '../../utils/authHelper';
 import './Card.css';
-import { generateAuthHeader, getUserEmail } from '../../utils/authHelper'
 
 export default function AppointmentCard(props) {
 
