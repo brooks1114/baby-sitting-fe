@@ -1,6 +1,6 @@
-import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { Link, withRouter } from 'react-router-dom';
+import Navbar from 'react-bootstrap/Navbar';
+import { withRouter } from 'react-router-dom';
 import UserNav from './UserNav';
 
 function Header(props) {

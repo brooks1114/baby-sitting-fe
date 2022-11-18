@@ -1,6 +1,5 @@
-import Header from "../../components/header/Header";
 import DeleteAccountForm from "../../components/deleteaccountform/deleteaccountform";
-import Slideshow from "../../components/slideshow/Slideshow";
+import Header from "../../components/header/Header";
 import { isAuthenticated } from "../../utils/authHelper";
 
 function DeleteAccount(props) {

@@ -1,7 +1,7 @@
 import Card from 'react-bootstrap/Card';
-import './Card.css'
 import Row from 'react-bootstrap/Row';
 import { Link } from 'react-router-dom';
+import './Card.css';
 
 export default function SingleSitterCard(props) {
     let starRating = []
@@ -24,7 +24,7 @@ export default function SingleSitterCard(props) {
                 <Card.Body>
                     {/* Display an image of the Sitter */}
                     <div className="circle-image text-center">
-                        <img src="https://keycom.net.au/wp-content/uploads/2018/12/t2.jpg" width="50"></img>
+                        <img alt="sitters headshot" src="https://keycom.net.au/wp-content/uploads/2018/12/t2.jpg" width="50"></img>
                     </div>
                     {/* Display the First and Last Name of the Sitter */}
                     <Card.Title>

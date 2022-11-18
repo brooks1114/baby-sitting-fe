@@ -1,10 +1,9 @@
-// import Card from 'react-bootstrap/Card';
 import { useCallback, useEffect, useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import SingleSitterCard from "../gridcards/SingleSitterCard";
+import { generateAuthHeader } from '../../utils/authHelper';
 import Filters from "../filter/Filters";
-import { generateAuthHeader, getUserEmail } from '../../utils/authHelper'
+import SingleSitterCard from "../gridcards/SingleSitterCard";
 
 function GridCardsSittersHook(props) {
 
@@ -12,7 +11,7 @@ function GridCardsSittersHook(props) {
     const [query, setQuery] = useState("")
     const handleCallback = useCallback((filters) => {
         let queryBuilder = "?"
-        Object.keys(filters).map((key) => {
+        Object.keys(filters).from((key) => {
             if (filters[key]) {
                 queryBuilder += `${key}=${filters[key]}&`
             }

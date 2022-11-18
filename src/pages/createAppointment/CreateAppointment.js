@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Alert from 'react-bootstrap/Alert';
-import { generateAuthHeader, getUserEmail } from '../../utils/authHelper'
-import Header from "../../components/header/Header";
 import AppointmentForm from "../../components/appointmentForm/AppointmentForm";
+import Header from "../../components/header/Header";
 import mustBeAuthenticated from "../../redux/hoc/mustBeAuthenticated";
+import { generateAuthHeader, getUserEmail } from '../../utils/authHelper';
 
 class CreateAppointment extends Component {
 
