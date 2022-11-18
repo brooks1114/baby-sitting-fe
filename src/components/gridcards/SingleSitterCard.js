@@ -35,7 +35,7 @@ export default function SingleSitterCard(props) {
                     <Row style={{ display: 'flex', justifyContent: 'center' }}>
                         {starRating}
                     </Row>
-                    <Card.Text>
+                    <Card.Text as="div">
 
                         <div className="price">${props.sitter.hourlyRate}/hr</div>
                         <div className="maxKids">*Up to {props.sitter.maxKidsWillingToWatch} Children</div>

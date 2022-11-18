@@ -4,7 +4,6 @@ import CreateAppointment from "./pages/createAppointment/CreateAppointment";
 import DeleteAccount from "./pages/deleteAccount/DeleteAccount";
 import Login from "./pages/login/Login";
 import NotFound from "./pages/notFound/NotFound";
-import Protected from "./pages/protected/Protected";
 import Register from "./pages/register/Register";
 import Sitters from "./pages/sitters/Sitters";
 import UpdateUser from "./pages/updateUser/UpdateUser";
@@ -46,15 +45,10 @@ function App() {
         />
         <Route
           exact
-          path="/protected"
-          component={Protected}
-        />
-        <Route
-          exact
           path="/createappointment/:sitteremail"
           component={CreateAppointment}
         />
-         <Route
+        <Route
           exact
           path="/deleteaccount"
           component={DeleteAccount}
