@@ -11,16 +11,29 @@ class Filters extends Component {
         firstName: "",
         lastName: "",
         availability: "",
-        neighborhood: [],
+        neighborhood: "",
         rating: "",
         hourlyRate: "",
         maxKidsWillingToWatch: "",
         fakeAvailability: ""
     }
 
+    checkAll(checkEm) {
+        var cbs = document.getElementsByTagName('input');
+        for (var i = 0; i < cbs.length; i++) {
+            if (cbs[i].type === 'checkbox') {
+                cbs[i].checked = checkEm;
+            }
+        }
+    }
+
     onClearFilter(stateToChange) {
-        console.log("clear")
-        this.setState({ [stateToChange]: "" }, () => { this.props.filters(this.state) })
+        let resetValue = ""
+        if (stateToChange === "neighborhood") {
+            // resetValue = []
+            this.checkAll(false)
+        }
+        this.setState({ [stateToChange]: resetValue }, () => { this.props.filters(this.state) })
     }
 
     render() {
@@ -39,7 +52,6 @@ class Filters extends Component {
                                     this.setState({ firstName: event.target.value }, () => { this.props.filters(this.state) })
                                 }}
                             />
-                            {/* <Button> X </Button> */}
                         </InputGroup>
                     </DropdownButton>
                     <DropdownButton id="dropdown-last-name" title="Last Name">
@@ -62,9 +74,7 @@ class Filters extends Component {
                             <FormControl type="date"
                                 onBlur={(event) => {
                                     this.setState({ fakeAvailability: event.target.value }, () => { this.props.filters(this.state) })
-
-                                }
-                                }
+                                }}
                             />
                         </InputGroup>
                     </DropdownButton>
@@ -79,15 +89,18 @@ class Filters extends Component {
                                                 id={`custom-checkbox-${nb}`}
                                                 name={nb}
                                                 value={nb}
-                                                // checked={checkedState[index]}
                                                 onChange={(event) => {
-                                                    this.setState({ neighborhood: [...this.state.neighborhood, event.target.value] })
-                                                    this.filters(this.state)
+                                                    event.target.checked ?
+                                                        this.setState({ neighborhood: [...this.state.neighborhood, event.target.value] }, () => { this.props.filters(this.state) })
+                                                        : this.setState({ neighborhood: this.state.neighborhood.filter(e => e !== event.target.value) }, () => {
+                                                            console.log(this.state)
+                                                            this.props.filters(this.state)
+                                                        })
                                                 }}
                                             />
                                             <label htmlFor={`custom-checkbox-${nb}`}>{nb}</label>
                                         </div>
-                                        <div className="right-section">console.log(this.state.neighborhood)</div>
+                                        <div className="right-section"></div>
                                     </div>
                                 );
                             })}
@@ -132,10 +145,10 @@ class Filters extends Component {
                     </DropdownButton>
                 </div>
                 <div className="active-filters-container">
-                    {this.state.firstName !== "" ? <div className="filter-indicator"> First Name: {this.state.firstName} <CloseIcon handleClickClose={() => this.onClearFilter("firstName")} /> </div> : <></>}
+                    {this.state.firstName !== "" ? <div className="filter-indicator"> First Name: {this.state.firstName} <CloseIcon handleClickClose={() => this.onClearFilter("firstName")} /> </div> : <div></div>}
                     {this.state.lastName !== "" ? <div className="filter-indicator"> Last Name: {this.state.lastName} <CloseIcon handleClickClose={() => this.onClearFilter("lastName")} /> </div> : <></>}
                     {this.state.fakeAvailability !== "" ? <div className="filter-indicator"> Availabilty: {this.state.fakeAvailability} <CloseIcon handleClickClose={() => this.onClearFilter("fakeAvailability")} />   </div> : <></>}
-                    {this.state.neighborhood.length > 0 ? <div className="filter-indicator"> Neighborhood: {this.state.neighborhood} <CloseIcon />  </div> : <></>}
+                    {this.state.neighborhood.length > 0 ? <div className="filter-indicator"> Neighborhood: {this.state.neighborhood.toString()} <CloseIcon handleClickClose={() => this.onClearFilter("neighborhood")} /> </div> : <></>}
                     {this.state.rating !== "" ? <div className="filter-indicator"> Rating: {this.state.rating} <CloseIcon handleClickClose={() => this.onClearFilter("rating")} /> </div> : <></>}
                     {this.state.hourlyRate !== "" ? <div className="filter-indicator"> Hourly Rate: {this.state.hourlyRate} <CloseIcon handleClickClose={() => this.onClearFilter("hourlyRate")} /> </div> : <></>}
                     {this.state.maxKidsWillingToWatch !== "" ? <div className="filter-indicator"> Max Kids: {this.state.maxKidsWillingToWatch} <CloseIcon handleClickClose={() => this.onClearFilter("maxKidsWillingToWatch")} /> </div> : <></>}
