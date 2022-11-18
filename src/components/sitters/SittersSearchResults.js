@@ -11,7 +11,7 @@ function GridCardsSittersHook(props) {
     const [query, setQuery] = useState("")
     const handleCallback = useCallback((filters) => {
         let queryBuilder = "?"
-        Object.keys(filters).from((key) => {
+        Object.keys(filters).map((key) => {
             if (filters[key]) {
                 queryBuilder += `${key}=${filters[key]}&`
             }
