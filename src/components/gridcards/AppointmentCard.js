@@ -54,7 +54,7 @@ export default function AppointmentCard(props) {
                 <Card.Title>
                     <div className="name mb-1 fw-500 text-center">{props.appointment.sitterInfo.firstName} {props.appointment.sitterInfo.lastName}</div>
                 </Card.Title>
-                <Card.Text>
+                <Card.Text as="div">
                     <div className="card-text-line">
                         <Card.Title>Date: </Card.Title> {date} </div>
                     <div className="card-text-line">
